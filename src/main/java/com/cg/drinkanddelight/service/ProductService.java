@@ -9,7 +9,7 @@ import com.cg.drinkanddelight.dao.ProductDAO;
 import com.cg.drinkanddelight.dao.ProductDAOImpl;
 import com.cg.drinkanddelight.model.ProductStock;
 
-public class ProductService implements ProductDAO{
+public class ProductService{
 	ProductDAO pd=new ProductDAOImpl();
 	public String exitDateCheck(String id, LocalDate date) {
 		
@@ -35,53 +35,6 @@ public class ProductService implements ProductDAO{
 		return pd.updateProductStock(ps);
 		
 		}
-
-	@Override
-	public String trackProductOrder(ProductStock productStock) {
-		return null;
-	}
-
-	@Override
-	public boolean processDateCheck(ProductStock productStock) {
-
-		return false;
-	}
-
-	@Override
-	public String updateExitDateinStock(ProductStock productStock) {
-
-		return null;
-	}
-
-	@Override
-	public String updateProductStock(ProductStock productStock) {
-
-		return null;
-	}
-
-	@Override
-	public boolean doesProductOrderIdExistinStock(String orderId) {
-
-		return false;
-	}
-
-	@Override
-	public boolean doesProductOrderIdExist(String orderId) {
-
-		return false;
-	}
-
-	@Override
-	public boolean exitDateCheck(ProductStock productStock) {
-
-		return false;
-	}
-
-	@Override
-	public void getAllKeys(HashMap<String, ProductStock> mMap) {
-		
-		
-	}
 	
 	public void getKeys() {
 		HashMap<String,ProductStock> mMap=Database.getmMap();

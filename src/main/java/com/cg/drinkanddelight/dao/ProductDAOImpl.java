@@ -91,7 +91,7 @@ public class ProductDAOImpl implements ProductDAO{
 		Set<String> keys=sorted.keySet();
 		System.out.println("------KEYS------");
 		keys.forEach((K)->{
-			System.out.println("     "+K+"     ");
+			System.out.println("      "+K);
 		});
 	}
 

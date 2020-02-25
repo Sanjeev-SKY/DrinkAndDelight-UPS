@@ -2,6 +2,7 @@ package com.cg.drinkanddelight.ui;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import com.cg.drinkanddelight.dao.Database;
 import com.cg.drinkanddelight.model.ProductStock;
@@ -113,7 +114,9 @@ public class Main {
 	}
 
 	public void showAllStockDetails() {
-		Database.getmMap().forEach((K, V) -> {
+		TreeMap<String, ProductStock> sort = new TreeMap<>();
+		sort.putAll(Database.getmMap());
+		sort.forEach((K, V) -> {
 			System.out.println("Order Id - " + V.getOrderId() + "\n" + "Name - " + V.getName() + "\n"
 					+ "Quantity value - " + V.getQuantityValue() + "\n" + "Manufacturing Date - "
 					+ V.getManufacturingDate() + "\n" + "Expiry Date - " + V.getExpiryDate() + "\n" + "Exit Date - "
