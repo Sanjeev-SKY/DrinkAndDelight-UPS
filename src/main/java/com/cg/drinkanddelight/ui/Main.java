@@ -41,8 +41,6 @@ public class Main {
 
 			System.out.println(Main.updateProductStock(id, splitDate(mDate), splitDate(eDate), qs) + "\n");
 
-			selectOperation();
-
 		} catch (Exception e) {
 
 			System.out.println(e);
@@ -71,37 +69,39 @@ public class Main {
 	}
 
 	public void selectOperation() {
-		System.out.println("Select Operation:\n 1-Update Product Stock\n 2-Show Stock Details\n 3-Show All Stock Details\n");
-		String so = sc.next();
-		switch (so) {
-		case "1":
-			call();
-			break;
-		case "2":
-			showStockDetails();
-			break;
-		case "3":
-			showAllStockDetails();
-			break;
-		default:
-			System.out.println("Invalid Choice...");
-			break;
-		}
+		do {
+			System.out.println(
+					"Select Operation:\n 1-Update Product Stock\n 2-Show Stock Details\n 3-Show All Stock Details\n");
+			String so = sc.next();
+			switch (so) {
+			case "1":
+				call();
+				break;
+			case "2":
+				showStockDetails();
+				break;
+			case "3":
+				showAllStockDetails();
+				break;
+			default:
+				System.out.println("Invalid Choice...");
+				System.exit(0);
+			}
+		} while (true);
 	}
-	
+
 	public void showStockDetails() {
 		System.out.println("Enter order Id: ");
-		String orderId=sc.next();
-		if(Database.getmMap().containsKey(orderId)) {
-			ProductStock V=Database.getmMap().get(orderId);
+		String orderId = sc.next();
+		if (Database.getmMap().containsKey(orderId)) {
+			ProductStock V = Database.getmMap().get(orderId);
 			System.out.println("Order Id - " + V.getOrderId() + "\n" + "Name - " + V.getName() + "\n"
 					+ "Quantity value - " + V.getQuantityValue() + "\n" + "Manufacturing Date - "
 					+ V.getManufacturingDate() + "\n" + "Expiry Date - " + V.getExpiryDate() + "\n" + "Exit Date - "
 					+ V.getExitDate() + "\n" + "Quality - " + V.getQualityCheck() + "\n");
-		}else {
+		} else {
 			System.out.println("ID not exists...");
 		}
-		selectOperation();
 	}
 
 	public void showAllStockDetails() {
@@ -111,6 +111,5 @@ public class Main {
 					+ V.getManufacturingDate() + "\n" + "Expiry Date - " + V.getExpiryDate() + "\n" + "Exit Date - "
 					+ V.getExitDate() + "\n" + "Quality - " + V.getQualityCheck() + "\n");
 		});
-		selectOperation();
 	}
 }
