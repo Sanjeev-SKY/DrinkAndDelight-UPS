@@ -1,5 +1,7 @@
 package com.cg.drinkanddelight.dao;
 
+import java.util.HashMap;
+
 import com.cg.drinkanddelight.model.ProductStock;
 
 public interface ProductDAO {
@@ -17,5 +19,7 @@ public String trackProductOrder(ProductStock productStock);
 	public boolean doesProductOrderIdExist(String orderId);
 	
 	public boolean exitDateCheck(ProductStock productStock);
+	
+	public void getAllKeys(HashMap<String,ProductStock> mMap);
 	
 }

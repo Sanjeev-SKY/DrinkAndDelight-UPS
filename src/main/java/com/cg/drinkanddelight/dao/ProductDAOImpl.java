@@ -1,6 +1,9 @@
 package com.cg.drinkanddelight.dao;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeMap;
 
 import com.cg.drinkanddelight.model.ProductStock;
 
@@ -79,6 +82,17 @@ public class ProductDAOImpl implements ProductDAO{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void getAllKeys(HashMap<String, ProductStock> mMap) {
+		TreeMap<String, ProductStock> sorted = new TreeMap<>();
+		sorted.putAll(mMap);
+		Set<String> keys=sorted.keySet();
+		System.out.println("------KEYS------");
+		keys.forEach((K)->{
+			System.out.println("     "+K+"     ");
+		});
 	}
 
 }

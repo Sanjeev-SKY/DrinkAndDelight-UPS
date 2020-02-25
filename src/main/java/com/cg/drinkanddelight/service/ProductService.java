@@ -1,8 +1,10 @@
 package com.cg.drinkanddelight.service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 import com.cg.drinkanddelight.dao.DAO;
+import com.cg.drinkanddelight.dao.Database;
 import com.cg.drinkanddelight.dao.ProductDAO;
 import com.cg.drinkanddelight.dao.ProductDAOImpl;
 import com.cg.drinkanddelight.model.ProductStock;
@@ -75,5 +77,15 @@ public class ProductService implements ProductDAO{
 		return false;
 	}
 
+	@Override
+	public void getAllKeys(HashMap<String, ProductStock> mMap) {
+		
+		
+	}
+	
+	public void getKeys() {
+		HashMap<String,ProductStock> mMap=Database.getmMap();
+		pd.getAllKeys(mMap);
+	}
 	
 }

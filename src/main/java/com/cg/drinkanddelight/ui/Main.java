@@ -67,20 +67,28 @@ public class Main {
 		ProductService ps = new ProductService();
 		return ps.updateProductStock(orderId, manufacturingDate, expiryDate, qualityAnalysis);
 	}
-
+	
+	public void getKeys() {
+		ProductService ps = new ProductService();
+		ps.getKeys();
+	}
+	
 	public void selectOperation() {
 		do {
 			System.out.println(
-					"Select Operation:\n 1-Update Product Stock\n 2-Show Stock Details\n 3-Show All Stock Details\n");
+					"Select Operation:\n 1-Get All Keys\n 2-Update Product Stock\n 3-Show Stock Details\n 4-Show All Stock Details\n");
 			String so = sc.next();
 			switch (so) {
 			case "1":
-				call();
+				getKeys();
 				break;
 			case "2":
-				showStockDetails();
+				call();
 				break;
 			case "3":
+				showStockDetails();
+				break;
+			case "4":
 				showAllStockDetails();
 				break;
 			default:
