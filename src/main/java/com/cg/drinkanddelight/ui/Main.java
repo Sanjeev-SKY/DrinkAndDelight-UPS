@@ -10,6 +10,8 @@ import com.cg.drinkanddelight.service.ProductService;
 
 public class Main {
 	Scanner sc = new Scanner(System.in);
+	public static String idm;
+	ProductService ps = new ProductService();
 
 	public static void main(String[] args) {
 
@@ -28,20 +30,29 @@ public class Main {
 
 			System.out.println("Enter Order Id: ");
 			String id = sc.next();
-			System.out.println("Enter Exit Date:- in (YYYYMMDD)");
-			String date = sc.next();
+			if (ps.checkOrderID(id)) {
+				idm = id;
+				System.out.println("Enter Exit Date:- in (YYYYMMDD) -> Should be before Current Date");
+				String date = sc.next();
+				String ed = Main.setExitDate(id, splitDate(date));
+				System.out.println(ed+"\n");
 
-			System.out.println(Main.setExitDate(id, splitDate(date)));
+				if (ed=="Exit Date Set") {
 
-			System.out.println("Enter Manufacturing Date:- in (YYYYMMDD)");
-			String mDate = sc.next();
-			System.out.println("Enter Expiry Date:- in (YYYYMMDD)");
-			String eDate = sc.next();
-			System.out.println("Enter quality status: ");
-			String qs = sc.next();
+					System.out.println("Enter Manufacturing Date:- in (YYYYMMDD) -> Should be before Exit Date");
+					String mDate = sc.next();
 
-			System.out.println(Main.updateProductStock(id, splitDate(mDate), splitDate(eDate), qs) + "\n");
+					System.out.println(
+							"Enter Expiry Date:- in (YYYYMMDD) -> Should be after four months from Current Date");
+					String eDate = sc.next();
 
+					System.out.println("Enter quality status:");
+					String qs = sc.next();
+
+					System.out.println(Main.updateProductStock(id, splitDate(mDate), splitDate(eDate), qs) + "\n");
+				}
+			} else
+				System.out.println("Order Id not exists......\n");
 		} catch (Exception e) {
 
 			System.out.println(e);
@@ -68,16 +79,16 @@ public class Main {
 		ProductService ps = new ProductService();
 		return ps.updateProductStock(orderId, manufacturingDate, expiryDate, qualityAnalysis);
 	}
-	
+
 	public void getKeys() {
-		ProductService ps = new ProductService();
+		// ProductService ps = new ProductService();
 		ps.getKeys();
 	}
-	
+
 	public void selectOperation() {
 		do {
 			System.out.println(
-					"Select Operation:\n 1-Get All Keys\n 2-Update Product Stock\n 3-Show Stock Details\n 4-Show All Stock Details\n");
+					"Select Operation:\n 1-Get All Order ID's\n 2-Update Product Stock\n 3-Show Stock Details-For any Id\n 4-Show All Stock Details\n 5-Exit\n");
 			String so = sc.next();
 			switch (so) {
 			case "1":
@@ -92,9 +103,10 @@ public class Main {
 			case "4":
 				showAllStockDetails();
 				break;
-			default:
-				System.out.println("Invalid Choice...");
+			case "5":
 				System.exit(0);
+			default:
+				System.out.println("Invalid Choice...\n");
 			}
 		} while (true);
 	}

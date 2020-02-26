@@ -40,5 +40,10 @@ public class ProductService{
 		HashMap<String,ProductStock> mMap=Database.getmMap();
 		pd.getAllKeys(mMap);
 	}
+	public boolean checkOrderID(String orderId) {
+		if(pd.doesProductOrderIdExistinStock(orderId))
+			return true;
+		return false;
+	}
 	
 }

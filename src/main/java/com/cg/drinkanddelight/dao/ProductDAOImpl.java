@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.cg.drinkanddelight.model.ProductStock;
+import com.cg.drinkanddelight.ui.Main;
 
 public class ProductDAOImpl implements ProductDAO{
 
@@ -67,11 +68,16 @@ public class ProductDAOImpl implements ProductDAO{
 		if(productStock.getExitDate().compareTo(LocalDate.now())<0) {
 			return true;
 		}
-		return false;
+		else {
+			productStock.setExitDate(null);
+			return false;	
+		}
+		
 	}
 	
 	public boolean validateManufacturingDate(LocalDate manufacturingDate) {
-		if(manufacturingDate.compareTo(LocalDate.now())<0) {
+		ProductStock psm=Database.getmMap().get(Main.idm);
+		if(manufacturingDate.compareTo(psm.getExitDate())<0) {
 			return true;
 		}
 		return false;
