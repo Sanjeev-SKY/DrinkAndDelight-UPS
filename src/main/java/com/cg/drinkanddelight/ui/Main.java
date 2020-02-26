@@ -11,6 +11,7 @@ import com.cg.drinkanddelight.service.ProductService;
 public class Main {
 	Scanner sc = new Scanner(System.in);
 	public static String idm;
+	public static String ed;
 	ProductService ps = new ProductService();
 
 	public static void main(String[] args) {
@@ -34,10 +35,15 @@ public class Main {
 				idm = id;
 				System.out.println("Enter Exit Date:- in (YYYYMMDD) -> Should be before Current Date");
 				String date = sc.next();
-				String ed = Main.setExitDate(id, splitDate(date));
-				System.out.println(ed+"\n");
-
-				if (ed=="Exit Date Set") {
+				if(date.length()==8) {
+				ed = Main.setExitDate(id, splitDate(date));
+				System.out.println(ed + "\n");
+				}
+				else {
+					System.out.println("Invalid Date....\n");
+				}
+				
+				if (ed == "Exit Date Set") {
 
 					System.out.println("Enter Manufacturing Date:- in (YYYYMMDD) -> Should be before Exit Date");
 					String mDate = sc.next();
@@ -88,7 +94,7 @@ public class Main {
 	public void selectOperation() {
 		do {
 			System.out.println(
-					"Select Operation:\n 1-Get All Order ID's\n 2-Update Product Stock\n 3-Show Stock Details-For any Id\n 4-Show All Stock Details\n 5-Exit\n");
+					"Select Operation:\n 1-Get All Order ID's\n 2-Update Product Stock\n 3-Show Stock Details-For any Id\n 4-Show All Stock Details\n 5-Exit\n -----------------------------------------------\n");
 			String so = sc.next();
 			switch (so) {
 			case "1":
